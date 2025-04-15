@@ -227,7 +227,7 @@ $turma = [
 ];
 
 // Exibindo os resultados
-echo "<strong>Boletim 2DA:</strong><br>";
+echo "<strong>Boletim da Turma:</strong><br>";
 foreach ($turma as $aluno) {
     $media = Media($aluno["notas"]); // Calcula a média
     $status = determinarStatus($media); // Determina o status
