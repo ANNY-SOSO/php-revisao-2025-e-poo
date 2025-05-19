@@ -5,7 +5,46 @@
 
 
 // 1ª Digitação (Aqui)
+class cachorro {
+    private $nome;
+    private $comida;
+    private $sono;
 
+    public function __construct($nome, $comida, $sono) {
+        $this ->nome = $nome; 
+        $this ->comida = $comida; 
+        $this ->sono = $sono; 
+    }
+
+    public function comer() {
+        $this->comida -=1;
+    }
+
+    public function dormir() {
+        $this->sono = false;
+    }
+
+    // Getters e Setters (comuns no PHP)
+    public function getNome() {
+        return $this->nome;
+    }
+
+    public function getComida() {
+        return $this->comida;
+    }
+
+    public function getSono() {
+        return $this->sono;
+    }
+}
+
+// criando objetos na POO
+$cachorro_1 = new cachorro("Nelson", 3,false);
+$cachorro_2 = new cachorro("Jer  emias", 1, true);
+
+// usar métodos
+$cachorro_1-> comer();
+$cachorro_2->dormir();
 
 // Exibindo os resultados no navegador
 echo "<!DOCTYPE html>
