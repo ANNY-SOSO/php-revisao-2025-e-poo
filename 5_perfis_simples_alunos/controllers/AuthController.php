@@ -1,43 +1,43 @@
 <?php
-
-// Controlar a autenticação
+/**
+ * Controlador de autenticação
+ */
 class AuthController {
-
-    // Exibir a página de login
+    /**
+    * Exibe a página de login
+    */
     public function login($erro = '') {
         require_once 'views/login.php';
-        // Função que renderiza a tela
         renderizarLogin($erro);
     }
 
-    // Processa a tentativa de login
+    /**
+     * Processa a tentativa de login
+     */
     public function autenticar() {
-        // Obtem valor do formulário ou usa vazio
         $usuario = $_POST['usuario'] ?? '';
         $senha = $_POST['senha'] ?? '';
-
-        // Verifica se algum campo esta vazio
+        
         if (empty($usuario) || empty($senha)) {
-            $this->login('Preencha todos os campos!');
+            $this->login('Preencha todos os campos');
+            return;
         }
-
-        // Tenta autenticar chamando método "Auth"
         $dadosUsuario = Auth::autenticar($usuario, $senha);
-
-        if($dadosUsuario) {
-            // Se credenciais válidas inicia sessão
+        if ($dadosUsuario) {
             Auth::iniciarSessao($dadosUsuario);
-
-            // Redireciona para página inicial (Protegida)
             header('Location: index.php?pagina=lista');
             exit;
         } else {
-            $this->login('Usuário ou senha incorretos!');
+            $this->login('Usuário ou senha incorrectos');
         }
     }
-        // Processa o logout
-        public function logout() {
-            Auth::encerrarSessao();
-            header('Location: index.php?pagina=login');
-        }
+    
+    /**
+    * Processa o logout
+    */
+    public function logout() {
+        Auth::encerrarSessao();
+        header('Location: index.php?pagina=login');
+        exit;
     }
+}

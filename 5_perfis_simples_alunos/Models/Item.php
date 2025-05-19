@@ -1,11 +1,11 @@
 <?php
 /**
- * Modelo para gerenciar itens
- */
+* Modelo para gerenciar itens
+*/
 class Item {
     /**
-     * Busca todos os itens
-     */
+    * Busca todos os itens
+    */
     public static function buscarTodos() {
         $conn = conectarBD();
         $query = "SELECT * FROM itens ORDER BY id ASC";
@@ -13,10 +13,10 @@ class Item {
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    
+
     /**
-     * Busca um item pelo ID
-     */
+    * Busca um item pelo ID
+    */
     public static function buscarPorId($id) {
         $conn = conectarBD();
         $query = "SELECT * FROM itens WHERE id = :id";
@@ -24,10 +24,10 @@ class Item {
         $stmt->execute(['id' => $id]);
         return $stmt->fetch();
     }
-    
+
     /**
-     * Adiciona um novo item
-     */
+    * Adiciona um novo item
+    */
     public static function adicionar($titulo, $conteudo) {
         $conn = conectarBD();
         $query = "INSERT INTO itens (titulo, conteudo) VALUES (:titulo, :conteudo)";
@@ -37,10 +37,10 @@ class Item {
             'conteudo' => $conteudo
         ]);
     }
-    
+
     /**
-     * Atualiza um item existente
-     */
+    * Atualiza um item existente
+    */
     public static function atualizar($id, $titulo, $conteudo) {
         $conn = conectarBD();
         $query = "UPDATE itens SET titulo = :titulo, conteudo = :conteudo WHERE id = :id";
@@ -51,10 +51,10 @@ class Item {
             'conteudo' => $conteudo
         ]);
     }
-    
+
     /**
-     * Exclui um item
-     */
+    * Exclui um item
+    */
     public static function excluir($id) {
         $conn = conectarBD();
         $query = "DELETE FROM itens WHERE id = :id";
